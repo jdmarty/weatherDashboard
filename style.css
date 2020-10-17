@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box
+}
+
+
+
+#currentDay {
+    height: 40vh
+}
+
+#fiveDay {
+    height: 40vh
+}
