@@ -20,23 +20,23 @@
     </nav>
     <div class="container-fluid my-2">
         <div class="row">
-            <aside class="col-sm-2 col-12 border">
+            <aside class="col-lg-2 col-12 border">
                 
                 <!-- <form> -->
                     <div class="form-row my-2">
-                        <div class="col-8 col-md-10 px-0">
+                        <div class="col-8 col-lg-10 px-0">
                             <input type="text" class="form-control" placeholder="City">
                         </div>
-                        <div class="col-2 col-md-2 px-0 text-center">
+                        <div class="col-2 col-lg-2 px-0">
                             <button type="submit" class="btn btn-primary"><i class="far fa-search"></i></button>
                         </div>
-                        <div class="col-2 col-md-2 px-0 text-center d-inline d-sm-none">
+                        <div class="col-2 col-lg-2 text-right d-inline d-lg-none">
                             <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapsedList"><i class="fas fa-bars"></i></i></i></button>
                         </div>
                     </div>
                 <!-- </form> -->
                 <div class="card">
-                    <ul class="list-group list-group-flush d-none d-sm-flex">
+                    <ul class="list-group list-group-flush d-none d-lg-flex">
                         <li class="list-group-item">Atlanta</li>
                         <li class="list-group-item">New York</li>
                         <li class="list-group-item">Winnipeg</li>
@@ -49,25 +49,27 @@
                 </div>
 
             </aside>
-            <main class="col-sm-10 col-12 border">
+            <main class="col-lg-10 col-12 border">
                 <div class="row">
-                    <div class="col-3 border">
-                        <div class="card">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                    <div class="col-4 border">
+                        <div class="" id="currentWeatherImage">
+                            <img src="https://image.shutterstock.com/image-vector/weather-sun-emoji-symbol-summer-260nw-1446572966.jpg" class="card-img"alt="...">
                         </div>
                     </div>
-                    <div class="col bg-primary">
-                        <h1>City</h1>
-                        <p>Temperature</p>
-                        <p>Humidity</p>
-                        <p>Wind Speed</p>
-                        <p>UV Index</p>
+                    <div class="col bg-primary text-white mx-4 align-self-center">
+                        <div id="currentWeatherDetails">
+                            <h1>City</h1>
+                            <p>Temperature</p>
+                            <p>Humidity</p>
+                            <p>Wind Speed</p>
+                            <p>UV Index</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col border" id="fiveDay">
                         <div class="row my-4">
-                            <div class="card col-lg col-12">
+                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
                                     <p>🌤</p>
@@ -75,7 +77,7 @@
                                     <p class="card-text">Humidty</p>
                                 </div>
                             </div>
-                            <div class="card col-lg col-12">
+                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
                                     <p>🌤</p>
@@ -83,7 +85,7 @@
                                     <p class="card-text">Humidty</p>
                                 </div>
                             </div>
-                            <div class="card col-lg col-12">
+                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
                                     <p>🌤</p>
@@ -91,7 +93,7 @@
                                     <p class="card-text">Humidty</p>
                                 </div>
                             </div>
-                            <div class="card col-lg col-12">
+                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
                                     <p>🌤</p>
@@ -99,7 +101,7 @@
                                     <p class="card-text">Humidty</p>
                                 </div>
                             </div>
-                            <div class="card col-lg col-12">
+                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Date</h5>
                                     <p>🌤</p>
