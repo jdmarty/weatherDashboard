@@ -10,14 +10,14 @@ if (!startLocation) startLocation = 'Los Angeles'
 
 //run first search
 searchWeather(startLocation)
+renderCities()
 
-//load initial weather conditions
+//load weather conditions
 function searchWeather(city) {
-$.ajax({
-  url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=imperial`,
-  method: "GET",
-})
-  .then(function (mainResponse) {
+  return $.ajax({
+    url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=imperial`,
+    method: "GET"
+  }).then(function (mainResponse) {
     console.log(mainResponse);
     //set the city name, temperature, humidity, and wind speed from main call
     $("#currentWeatherImg").attr(
@@ -40,6 +40,7 @@ $.ajax({
     //use these values to find the uv index at the given lat/long
     $.ajax({
       url: `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLatitude}&lon=${currentLongitude}&appid=${myApiKey}`,
+      method: "GET"
     }).then(function (uvResponse) {
       //find current UV index
       var currentUVI = uvResponse.value;
@@ -57,6 +58,7 @@ $.ajax({
       //append the uv index
       $("#currentUVI").html(newUVI);
     });
+    return mainResponse
   });
 }
 
@@ -67,13 +69,51 @@ $('form').on('click', function(e) {
      e.preventDefault()
 });
 
-$('#searchButton').on('click', function(e) {
-    var targetCity = $('#searchCity').val()
-    searchWeather(targetCity);
-    previousCities.unshift(targetCity);
-    localStorage.setItem('cities', JSON.stringify(previousCities))
+$('#searchButton').on('click', function() {
+  //identify the target city and reset input
+  var targetCity = $('#searchCity').val()
+  $('#searchCity').val('');
+  //search weather in that city
+  searchWeather(targetCity)
+  //if this search returns results...
+  .then(function (response) {
+    //check if that city has already been searched recently
+    if (!previousCities.includes(response.name)) {
+      //if it has not, check if there are more than 10 previous searches
+      if (previousCities.length < 10) {
+        previousCities.unshift(response.name);
+      } else {
+        previousCities.pop();
+        previousCities.unshift(response.name);
+      }
+      //render the cities lists
+      renderCities();
+      //save the new list of cities to local storage
+      localStorage.setItem("cities", JSON.stringify(previousCities));
+    }
+  });
 })
 
+//function to render cities from the saved array
+  function renderCities() {
+    //empty out both list groups
+    $('.list-group').empty();
+    //for every city in the current state
+    for (var city of previousCities) {
+      //create a new list item with event listener
+      var newCity = $('<li>')
+        .addClass('list-group-item')
+        .text(city)
+        .on('click', function(e) {
+          searchWeather(e.target.innerHTML)
+          $('#menuButton').trigger('click');
+        });
+      //append the new list item to both list groups
+      $('.list-group').append(newCity);
+    }
+  }
+
+  // localStorage.clear()
 
 //=====================================================================
 })

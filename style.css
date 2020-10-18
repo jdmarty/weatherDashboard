@@ -24,3 +24,12 @@
 .extremeRisk {
     background-color: #bf1baf;
 }
+
+/* List Item Behavior */
+
+li:hover {
+    background-color: #0275d8;
+    color: white;
+    border-right: 5px solid green !important;
+    cursor: pointer;
+}

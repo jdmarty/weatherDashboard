@@ -21,7 +21,6 @@
     <div class="container-fluid my-2">
         <div class="row">
             <aside class="col-lg-2 col-12 border">
-                
                 <form>
                     <div class="form-row my-2">
                         <div class="col-8 col-lg-10 px-0">
@@ -31,20 +30,14 @@
                             <button type="submit" class="btn btn-primary" id="searchButton"><i class="far fa-search"></i></button>
                         </div>
                         <div class="col-2 col-lg-2 text-right d-inline d-lg-none">
-                            <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapsedCityList"><i class="fas fa-bars"></i></i></i></button>
+                            <button type="submit" class="btn btn-primary" id="menuButton" data-toggle="collapse" data-target="#collapsedCityList"><i class="fas fa-bars"></i></i></i></button>
                         </div>
                     </div>
                 </form>
                 <div class="card">
                     <ul class="list-group list-group-flush d-none d-lg-flex" id="openCityList">
-                        <li class="list-group-item">Atlanta</li>
-                        <li class="list-group-item">New York</li>
-                        <li class="list-group-item">Winnipeg</li>
                     </ul>
                     <ul class="list-group list-group-flush collapse" id="collapsedCityList">
-                        <li class="list-group-item">Atlanta</li>
-                        <li class="list-group-item">New York</li>
-                        <li class="list-group-item">Winnipeg</li>
                     </ul>
                 </div>
 
@@ -54,7 +47,7 @@
                     <div class="col-4">
                         <img src="#" class="card-img" id="currentWeatherImg" alt="...">
                     </div>
-                    <div class="col bg-primary text-white mx-4 align-self-center">
+                    <div class="col bg-primary text-white mx-4 align-self-center rounded">
                         <div id="currentWeatherDetails" class="py-4">
                             <h3 id="currentCity">City</h3>
                             <p id="currentTemp">Temperature</p>
