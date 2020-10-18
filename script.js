@@ -28,10 +28,16 @@ $.ajax({
     }).then(function(uvResponse) {
         //find current UV index
         var currentUVI = uvResponse.value
+        var dangerClass = ''
         //set display class based on current UVI
+        if (currentUVI < 2) dangerClass = 'lowRisk';
+        if (currentUVI >= 2 && currentUVI < 6) dangerClass = 'moderateRisk';
+        if (currentUVI >= 6 && currentUVI < 8) dangerClass = "highRisk";
+        if (currentUVI >= 8 && currentUVI < 11) dangerClass = "veryHighRisk";
+        if (currentUVI >= 11) dangerClass = "extremeRisk";
         //display the uv index value
         var newUVI = $("<div>")
-            .text(`UV Index: ${currentUVI}`);
+            .html(`UV Index: <span class="${dangerClass} p-2 rounded">${currentUVI}</span>`)
         $('#currentWeatherDetails').append(newUVI)
     })
 })

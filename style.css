@@ -2,4 +2,25 @@
     box-sizing: border-box
 }
 
+/* UVI Color Types */
 
+.lowRisk {
+    background-color: #1bb556;
+}
+
+.moderateRisk {
+    background-color: #e0d722;
+    color: black
+}
+
+.highRisk {
+    background-color: #e3871e;
+}
+
+.veryHighRisk {
+    background-color: #e83017;
+}
+
+.extremeRisk {
+    background-color: #bf1baf;
+}
