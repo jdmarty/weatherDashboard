@@ -22,26 +22,26 @@
         <div class="row">
             <aside class="col-lg-2 col-12 border">
                 
-                <!-- <form> -->
+                <form>
                     <div class="form-row my-2">
                         <div class="col-8 col-lg-10 px-0">
-                            <input type="text" class="form-control" placeholder="City">
+                            <input type="text" class="form-control" placeholder="City" id="searchCity">
                         </div>
                         <div class="col-2 col-lg-2 px-0">
-                            <button type="submit" class="btn btn-primary"><i class="far fa-search"></i></button>
+                            <button type="submit" class="btn btn-primary" id="searchButton"><i class="far fa-search"></i></button>
                         </div>
                         <div class="col-2 col-lg-2 text-right d-inline d-lg-none">
-                            <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapsedList"><i class="fas fa-bars"></i></i></i></button>
+                            <button type="submit" class="btn btn-primary" data-toggle="collapse" data-target="#collapsedCityList"><i class="fas fa-bars"></i></i></i></button>
                         </div>
                     </div>
-                <!-- </form> -->
+                </form>
                 <div class="card">
-                    <ul class="list-group list-group-flush d-none d-lg-flex">
+                    <ul class="list-group list-group-flush d-none d-lg-flex" id="openCityList">
                         <li class="list-group-item">Atlanta</li>
                         <li class="list-group-item">New York</li>
                         <li class="list-group-item">Winnipeg</li>
                     </ul>
-                    <ul class="list-group list-group-flush collapse" id="collapsedList">
+                    <ul class="list-group list-group-flush collapse" id="collapsedCityList">
                         <li class="list-group-item">Atlanta</li>
                         <li class="list-group-item">New York</li>
                         <li class="list-group-item">Winnipeg</li>
@@ -51,10 +51,8 @@
             </aside>
             <main class="col-lg-10 col-12 border">
                 <div class="row">
-                    <div class="col-4 border">
-                        <div class="" id="currentWeatherImage">
-                            <img src="https://image.shutterstock.com/image-vector/weather-sun-emoji-symbol-summer-260nw-1446572966.jpg" class="card-img"alt="...">
-                        </div>
+                    <div class="col-4">
+                        <img src="#" class="card-img" id="currentWeatherImg" alt="...">
                     </div>
                     <div class="col bg-primary text-white mx-4 align-self-center">
                         <div id="currentWeatherDetails" class="py-4">
@@ -62,6 +60,7 @@
                             <p id="currentTemp">Temperature</p>
                             <p id="currentHumidity">Humidity</p>
                             <p id="currentWindSpeed">Wind Speed</p>
+                            <p id="currentUVI">UV Index: </p>
                         </div>
                     </div>
                 </div>
