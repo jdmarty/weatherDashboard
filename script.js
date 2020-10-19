@@ -49,7 +49,6 @@ function searchWeather(city) {
     url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=imperial`,
     method: "GET"
   }).then(function(mainResponse) {
-    console.log(mainResponse);
     //set the banner image
     $("#currentWeatherImg").attr(
       "src",
@@ -101,7 +100,6 @@ function searchWeather(city) {
       url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}&units=imperial`,
       method: 'GET'
     }).then(function(forecastResponse) {
-      console.log(forecastResponse);
       //for every card in the five day forecast...
       for (var i=0; i < $('#forecastRow').find('.card-body').length; i++) {
         //set the current card
