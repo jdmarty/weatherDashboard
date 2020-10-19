@@ -4,16 +4,33 @@ $(document).ready(() => {
 //globals
 var myApiKey = 'a3e758c20da44f92a45c7d1fe07b0e81';
 var weatherConditions = {
-  "clear sky": "☀",
-  "few clouds": "🌤",
-  "scattered clouds": "⛅",
-  "broken clouds": "⛅",
-  "overcast clouds": "☁",
+  Thunderstorm: "⛈",
+  Drizzle: "🌦",
+  "light rain": "🌦",
+  "moderate rain": "🌦",
+  "heavy intensity rain": "🌧",
+  "very heavy rain": "🌧",
+  "extreme rain": "🌧",
+  "freezing rain": "❄",
+  "light intensity shower rain": "🌦",
   "shower rain": "🌧",
-  "rain": "🌦",
-  "thunderstorm": "⛈",
-  "snow": "❄",
-  "mist": "🌫"
+  "heavy intensity shower rain": "🌧",
+  "ragged shower rain": "🌧",
+  Snow: "❄",
+  Mist: "🌫",
+  Smoke: "🌫",
+  Haze: "🌫",
+  Dust: "🌫",
+  Fog: "🌫",
+  Sand: "🌫",
+  Ash: "🌫",
+  Squall: "🌫",
+  Tornado: "🌪",
+  Clear: "☀",
+  'few clouds': "🌤",
+  'scattered clouds': "⛅",
+  'broken clouds': "🌥",
+  'overcast clouds': "☁"
 };
 
 //get initial state
@@ -33,12 +50,20 @@ function searchWeather(city) {
     method: "GET"
   }).then(function(mainResponse) {
     console.log(mainResponse);
-    //set the city name, temperature, humidity, and wind speed from main call
+    //set the banner image
     $("#currentWeatherImg").attr(
       "src",
       `http://openweathermap.org/img/wn/${mainResponse.weather[0].icon}@4x.png`
     ).attr('alt', mainResponse.weather[0].description)
-    $("#currentCity").text(`${mainResponse.name}${weatherConditions[mainResponse.weather[0].description] || ''}`);
+    //set the city text display and add emoji from object
+    $("#currentCity").text(
+      `${mainResponse.name}${
+        weatherConditions[mainResponse.weather[0].main] ||
+        weatherConditions[mainResponse.weather[0].description] ||
+        ''
+      }`
+    );
+    //set temp, humidity, and wind speed
     $("#currentTemp").text(`Temperature: ${mainResponse.main.temp.toFixed(1)} °F`);
     $("#currentHumidity").text(`Humidity: ${mainResponse.main.humidity}%`);
     $("#currentWindSpeed").text(`Wind Speed: ${mainResponse.wind.speed} MPH`);
@@ -83,9 +108,17 @@ function searchWeather(city) {
         var currentCard = $($('#forecastRow').find('.card-body')[i]);
         //find the appropriate item in the forecast response (Noon, 8 hour intervals)
         var currentForecast = forecastResponse.list[i*8+3]
-        //display the date, emoji, temp, and humidity on this card
+        //display the date on this card
         currentCard.children('.forecastDate').text(dateFns.format(new Date(currentForecast.dt_txt), 'M/D/YYYY'))
-        currentCard.children('.forecastEmoji').text(weatherConditions[currentForecast.weather[0].description] || '')
+        //find the appropriate emoji for this card
+        currentCard
+          .children(".forecastEmoji")
+          .text(
+            weatherConditions[currentForecast.weather[0].main] ||
+            weatherConditions[currentForecast.weather[0].description] ||
+            "X"
+          );
+          //set humidity and temperature
         currentCard.children('.forecastTemp').text(`Temp: ${currentForecast.main.temp.toFixed(1)}°F`)
         currentCard.children('.forecastHumid').text(`Humidity: ${currentForecast.main.humidity}%`)
       }
