@@ -9,43 +9,57 @@
     <script src="https://kit.fontawesome.com/269c17817f.js" crossorigin="anonymous"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Your Weather Dashboard</title>
+    <link rel="icon" href="Assets/thunderstorm-solid.svg">
 </head>
 <body>
+    <!-- Simple Navbar with brand icon from FA -->
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
             <i class="fas fa-lg fa-otter"></i>
             Weather Dashboard
         </a>
     </nav>
+    <!-- Main content Container and Single Row-->
     <div class="container-fluid my-2">
         <div class="row">
+            <!-- Sidebar containing search form -->
             <aside class="col-lg-2 col-12 border">
+                <!-- Form containing text input field, search button, and hidden toggle button -->
                 <form>
                     <div class="form-row my-2">
+                        <!-- Search Input Field -->
                         <div class="col-8 col-lg-10 px-0">
                             <input type="text" class="form-control" placeholder="City" id="searchCity">
                         </div>
+                        <!-- Search Button -->
                         <div class="col-2 col-lg-2 px-0">
                             <button type="submit" class="btn btn-primary" id="searchButton"><i class="far fa-search"></i></button>
                         </div>
+                        <!-- TOggle button (mobile only) -->
                         <div class="col-2 col-lg-2 text-right d-inline d-lg-none">
-                            <button type="submit" class="btn btn-primary" id="menuButton" data-toggle="collapse" data-target="#collapsedCityList"><i class="fas fa-bars"></i></i></i></button>
+                            <button type="toggle" class="btn btn-primary" id="menuButton" data-toggle="collapse" data-target="#collapsedCityList"><i class="fas fa-bars"></i></i></i></button>
                         </div>
                     </div>
                 </form>
+                <!-- Recent Searches Header -->
                 <h5 class="text-center d-none d-lg-block">Recent Searches</h5>
+                <!-- Desktop view searches list -->
                 <ul class="list-group list-group-flush d-none d-lg-flex" id="openCityList"></ul>
+                <!-- mobile view searches list -->
                 <ul class="list-group list-group-flush collapse" id="collapsedCityList"></ul>
-                
-
             </aside>
+            <!-- Main content grid containing two rows -->
             <main class="col-lg-10 col-12">
+                <!-- First row, current weather -->
                 <div class="row">
+                    <!-- div for weather image -->
                     <div class="col-4">
                         <img src="#" class="card-img" id="currentWeatherImg" alt="...">
                     </div>
+                    <!-- div for weather data -->
                     <div class="col bg-primary text-white mx-4 align-self-center rounded">
+                        <!-- wrapper for weather data -->
                         <div id="currentWeatherDetails" class="py-4">
                             <h3 id="currentCity">City</h3>
                             <p id="currentTemp">Temperature</p>
@@ -55,59 +69,62 @@
                         </div>
                     </div>
                 </div>
+                <!-- Row wrapper for forecast row -->
                 <div class="row">
                     <div class="col border" id="fiveDay">
+                        <!-- Row for five forecast cards -->
                         <div class="row my-4" id="forecastRow">
-                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
-                                <div class="card-body">
+                            <!-- forecast card 1 -->
+                            <section class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
+                                <article class="card-body">
                                     <h5 class="card-title forecastDate">Date</h5>
                                     <p class="forecastEmoji"></p>
                                     <p class="card-text forecastTemp">Temperature</p>
                                     <p class="card-text forecastHumid">Humidity</p>
-                                </div>
-                            </div>
-                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
-                                <div class="card-body">
+                                </article>
+                            </section>
+                            <!-- forecast card 2 -->
+                            <section class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
+                                <article class="card-body">
                                     <h5 class="card-title forecastDate">Date</h5>
                                     <p class="forecastEmoji"></p>
                                     <p class="card-text forecastTemp">Temperature</p>
                                     <p class="card-text forecastHumid">Humidity</p>
-                                </div>
-                            </div>
-                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
-                                <div class="card-body">
+                                </article>
+                            </section>
+                            <!-- forecast card 3 -->
+                            <section class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
+                                <article class="card-body">
                                     <h5 class="card-title forecastDate">Date</h5>
                                     <p class="forecastEmoji"></p>
                                     <p class="card-text forecastTemp">Temperature</p>
                                     <p class="card-text forecastHumid">Humidity</p>
-                                </div>
-                            </div>
-                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
-                                <div class="card-body">
+                                </article>
+                            </section>
+                            <!-- forecast card 4 -->
+                            <section class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
+                                <article class="card-body">
                                     <h5 class="card-title forecastDate">Date</h5>
                                     <p class="forecastEmoji"></p>
                                     <p class="card-text forecastTemp">Temperature</p>
                                     <p class="card-text forecastHumid">Humidity</p>
-                                </div>
-                            </div>
-                            <div class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
-                                <div class="card-body">
+                                </article>
+                            </section>
+                            <!-- forecast card 5 -->
+                            <section class="card bg-primary text-white col-lg col-12 mx-lg-2 mb-2">
+                                <article class="card-body">
                                     <h5 class="card-title forecastDate">Date</h5>
                                     <p class="forecastEmoji"></p>
                                     <p class="card-text forecastTemp">Temperature</p>
                                     <p class="card-text forecastHumid">Humidity</p>
-                                </div>
-                            </div>
+                                </article>
+                            </section>
                         </div>
-                        
                     </div>
                 </div>
             </main>
         </div>
     </div>
-
-
-
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
