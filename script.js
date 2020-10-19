@@ -106,7 +106,7 @@ $('#searchButton').on('click', function() {
         .text(city)
         .on('click', function(e) {
           searchWeather(e.target.innerHTML)
-          $('#menuButton').trigger('click');
+          $('#collapsedCityList').collapse('hide')
         });
       //append the new list item to both list groups
       $('.list-group').append(newCity);
