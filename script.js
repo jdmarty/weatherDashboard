@@ -3,6 +3,20 @@ $(document).ready(() => {
 
 //globals
 var myApiKey = 'a3e758c20da44f92a45c7d1fe07b0e81';
+var weatherConditions = {
+  "clear sky": "☀",
+  "few clouds": "🌤",
+  "scattered clouds": "⛅",
+  "broken clouds": "⛅",
+  "overcast clouds": "☁",
+  "shower rain": "🌧",
+  "rain": "🌦",
+  "thunderstorm": "⛈",
+  "snow": "❄",
+  "mist": "🌫"
+};
+
+//get initial state
 var previousCities = JSON.parse(localStorage.getItem('cities'));
 if (!previousCities) previousCities = [];
 var startLocation = previousCities[0];
@@ -24,7 +38,7 @@ function searchWeather(city) {
       "src",
       `http://openweathermap.org/img/wn/${mainResponse.weather[0].icon}@4x.png`
     ).attr('alt', mainResponse.weather[0].description)
-    $("#currentCity").text(mainResponse.name);
+    $("#currentCity").text(`${mainResponse.name}${weatherConditions[mainResponse.weather[0].description] || ''}`);
     $("#currentTemp").text(`Temperature: ${mainResponse.main.temp.toFixed(1)} °F`);
     $("#currentHumidity").text(`Humidity: ${mainResponse.main.humidity}%`);
     $("#currentWindSpeed").text(`Wind Speed: ${mainResponse.wind.speed} MPH`);
@@ -63,13 +77,20 @@ function searchWeather(city) {
       method: 'GET'
     }).then(function(forecastResponse) {
       console.log(forecastResponse);
+      //for every card in the five day forecast...
       for (var i=0; i < $('#forecastRow').find('.card-body').length; i++) {
+        //set the current card
         var currentCard = $($('#forecastRow').find('.card-body')[i]);
-        currentCard.children('.forecastDate').text(dateFns.format(new Date(forecastResponse.list[i*8].dt_txt), 'M/D/YYYY'))
-        currentCard.children('.forecastTemp').text(`Temperature: ${forecastResponse.list[i*8].main.temp.toFixed(1)} °F`)
-        currentCard.children('.forecastHumid').text(`Humidity: ${forecastResponse.list[i*8].main.humidity}%`)
+        //find the appropriate item in the forecast response (Noon, 8 hour intervals)
+        var currentForecast = forecastResponse.list[i*8+3]
+        //display the date, emoji, temp, and humidity on this card
+        currentCard.children('.forecastDate').text(dateFns.format(new Date(currentForecast.dt_txt), 'M/D/YYYY'))
+        currentCard.children('.forecastEmoji').text(weatherConditions[currentForecast.weather[0].description] || '')
+        currentCard.children('.forecastTemp').text(`Temp: ${currentForecast.main.temp.toFixed(1)}°F`)
+        currentCard.children('.forecastHumid').text(`Humidity: ${currentForecast.main.humidity}%`)
       }
     })
+    //return the main response so it can be used by search button
     return mainResponse  
   })
 }
