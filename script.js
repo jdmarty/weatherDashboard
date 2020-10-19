@@ -76,7 +76,7 @@ function searchWeather(city) {
     var currentLongitude = mainResponse.coord.lon;
     //use these values to find the uv index at the given lat/long
     $.ajax({
-      url: `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLatitude}&lon=${currentLongitude}&appid=${myApiKey}`,
+      url: `https://api.openweathermap.org/data/2.5/uvi?lat=${currentLatitude}&lon=${currentLongitude}&appid=${myApiKey}`,
       method: "GET"
     }).then(function (uvResponse) {
       //find current UV index
