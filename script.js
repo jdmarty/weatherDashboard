@@ -52,7 +52,7 @@ function searchWeather(city) {
     //set the banner image
     $("#currentWeatherImg").attr(
       "src",
-      `http://openweathermap.org/img/wn/${mainResponse.weather[0].icon}@4x.png`
+      `https://openweathermap.org/img/wn/${mainResponse.weather[0].icon}@4x.png`
     ).attr('alt', mainResponse.weather[0].description)
     //set the city text display and add emoji from object
     $("#currentCity").text(
