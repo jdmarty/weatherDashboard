@@ -17,7 +17,7 @@ function searchWeather(city) {
   return $.ajax({
     url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myApiKey}&units=imperial`,
     method: "GET"
-  }).then(function (mainResponse) {
+  }).then(function(mainResponse) {
     console.log(mainResponse);
     //set the city name, temperature, humidity, and wind speed from main call
     $("#currentWeatherImg").attr(
@@ -25,15 +25,13 @@ function searchWeather(city) {
       `http://openweathermap.org/img/wn/${mainResponse.weather[0].icon}@4x.png`
     ).attr('alt', mainResponse.weather[0].description)
     $("#currentCity").text(mainResponse.name);
-    $("#currentTemp").text(
-      `Temperature: ${mainResponse.main.temp.toFixed(1)}° F`
-    );
+    $("#currentTemp").text(`Temperature: ${mainResponse.main.temp.toFixed(1)} °F`);
     $("#currentHumidity").text(`Humidity: ${mainResponse.main.humidity}%`);
     $("#currentWindSpeed").text(`Wind Speed: ${mainResponse.wind.speed} MPH`);
     //return the main response so it can be used to make the second call
     return mainResponse;
   })
-  .then(function (mainResponse) {
+  .then(function(mainResponse) {
     //set the latitude and longitude for the uv index call
     var currentLatitude = mainResponse.coord.lat;
     var currentLongitude = mainResponse.coord.lon;
@@ -59,7 +57,21 @@ function searchWeather(city) {
       $("#currentUVI").html(newUVI);
     });
     return mainResponse
-  });
+  }).then(function(mainResponse) {
+    $.ajax({
+      url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${myApiKey}&units=imperial`,
+      method: 'GET'
+    }).then(function(forecastResponse) {
+      console.log(forecastResponse);
+      for (var i=0; i < $('#forecastRow').find('.card-body').length; i++) {
+        var currentCard = $($('#forecastRow').find('.card-body')[i]);
+        currentCard.children('.forecastDate').text(dateFns.format(new Date(forecastResponse.list[i*8].dt_txt), 'M/D/YYYY'))
+        currentCard.children('.forecastTemp').text(`Temperature: ${forecastResponse.list[i*8].main.temp.toFixed(1)} °F`)
+        currentCard.children('.forecastHumid').text(`Humidity: ${forecastResponse.list[i*8].main.humidity}%`)
+      }
+    })
+    return mainResponse  
+  })
 }
 
 
