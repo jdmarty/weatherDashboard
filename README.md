@@ -5,8 +5,10 @@
 - Repository [https://github.com/jdmarty/weatherDashboard](https://github.com/jdmarty/weatherDashboard)
 
 ### Desktop View
+![Weather Dashboard Desktop](https://github.com/jdmarty/weatherDashboard/blob/main/Assets/deployed_desktop.PNG)
 
 ### Mobile View
+![Weather Dashboard Mobile](https://github.com/jdmarty/weatherDashboard/blob/main/Assets/deployed_mobile.PNG)
 
 ### How To Use
 - Type the name of a city for which you want to find weather information into the searchbar
@@ -14,6 +16,8 @@
 - The last ten searches run by this app are stored beneath the searchbar. Click on any of these searches to initiate a new search for that city
 - NOTE: on mobile, you will need to click the navigation button to display the list of recent searches
 
+
+---------------------------------------------
 # 06 Server-Side APIs: Weather Dashboard
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
